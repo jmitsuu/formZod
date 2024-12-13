@@ -6,7 +6,7 @@ import {
  DialogTitle,
  DialogTrigger,
 } from "@/components/ui/dialog";
-import { FormPayment } from "../form/Form";
+import { FormPayment } from "../form/FormPayment";
 import { usePayments } from "@/global/global.payments";
 import { PaymentModel } from "../../home/payment.model";
 // import { usePayments } from "@/global/global.payments";

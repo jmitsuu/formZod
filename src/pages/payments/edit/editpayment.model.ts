@@ -23,11 +23,8 @@ export function FindParamsEdit(){
      
     })
      setTimeout(() => {
-      
       window.location.href = "/"
-   
-
-     }, 2000);
+     }, 1200);
     }
     } catch (error) {
       console.log(error)

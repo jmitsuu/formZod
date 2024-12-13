@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FormTypeModel } from "../../home/payment.type";
+import { FormTypeModel } from "../../payment.type";
 import { TypePayment } from "../../payment.interface";
 interface TypeForm {
  OnSubmit: (data: TypePayment) => Promise<void>;
@@ -11,7 +11,6 @@ interface TypeForm {
  btnTextForm: string;
 }
 export function FormPayment({ OnSubmit, btnTextForm }: TypeForm) {
- //duvida* é possivel deixar os valores register, handleSubmit, erros, como props de um formulario ? a intenção inicial era importar esse formulario para dentro da pasta edit.
  const { register, handleSubmit, errors } = FormTypeModel();
  return (
   <form onSubmit={handleSubmit(OnSubmit)} className="space-y-8">

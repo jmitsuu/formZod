@@ -13,6 +13,7 @@ import { PaymentModel } from "./payment.model";
 import { TypePayment } from "../payment.interface";
 import { usePayments } from "@/global/global.payments";
 import { Link } from "react-router-dom";
+import { Alert } from "@/components/Alert/Alert";
 
 export function Payments() {
  const { payments } = usePayments();
@@ -55,18 +56,20 @@ export function Payments() {
             <AiOutlineEdit className="text-blue-500" />
            </button>
           </Link>
-          <button
-           onClick={() => {
+          <Alert
+           titleAlert="Deletar"
+           alertFuncion={() => {
             deletePayment(cellPayment.id);
            }}
-          >
-           <AiOutlineDelete className="text-red-500" />
-          </button>
+           btnIcon={<AiOutlineDelete className="text-red-500" />}
+           alertDescrip="Tem certeza que deseja excluir esse pagamento?"
+          />
          </TableCell>
         </TableRow>
        );
       })}
      </TableBody>
+
      <TableCaption className="flex">
       {payments?.length} {payments?.length > 1 ? "Pagamentos" : "Pagamento"}
      </TableCaption>
