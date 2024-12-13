@@ -20,7 +20,7 @@
     },
     {
       "id": "m4hluj4r",
-      "status": "2dsa",
+      "status": "Pago",
       "product": "Bone",
       "amout": 150
     },
@@ -43,12 +43,6 @@
       "amout": 250
     },
     {
-      "id": "m4hmftq8",
-      "status": "Pago",
-      "product": "Meias",
-      "amout": 75
-    },
-    {
       "id": "m4lbdz0z",
       "status": "Pago",
       "product": "Caneta",
@@ -64,7 +58,7 @@
       "id": "m4lroba6",
       "status": "Pago",
       "product": "Carro",
-      "amout": 25000
+      "amout": 45000
     }
   ]
 }
