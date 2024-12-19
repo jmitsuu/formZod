@@ -11,13 +11,13 @@ import { Modal } from "../components/modal/Modal";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { PaymentModel } from "./payment.model";
 import { TypePayment } from "../payment.interface";
-import { usePayments } from "@/global/global.payments";
 import { Link } from "react-router-dom";
 import { Alert } from "@/components/Alert/Alert";
+import { PaymentServices } from "../payment.service";
 
 export function Payments() {
- const { payments } = usePayments();
  const { deletePayment } = PaymentModel();
+ const { isPending, payments } = PaymentServices();
 
  return (
   <section className="w-full h-full flex flex-col items-center  ">
@@ -28,8 +28,9 @@ export function Payments() {
     <div className="w-full flex mb-10 gap-x-3 relative ">
      <Modal />
     </div>
-
+    <div>{isPending ? "Carregando" : ""}</div>
     <Table className="">
+
      <TableHeader>
       <TableRow>
        <TableHead className="w-[100px]">Id</TableHead>

@@ -17,7 +17,7 @@ export function Modal() {
 
  return (
   <Dialog open={formModal} onOpenChange={setFormModal}>
-   <DialogTrigger className="absolute right-0 bg-black hover:bg-slate-600 py-1 px-2 rounded-lg text-slate-200">
+   <DialogTrigger className="absolute right-0 bg-black hover:bg-slate-600 py-2 text-sm px-2 rounded-lg text-slate-200">
     Novo pagamento
    </DialogTrigger>
    <DialogContent>

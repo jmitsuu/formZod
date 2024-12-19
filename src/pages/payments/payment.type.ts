@@ -7,14 +7,14 @@ import { FindParamsEdit } from "./edit/editpayment.model";
 type FormType  = z.infer<typeof formSchema>
 
 export function FormTypeModel(){
-  const{ findIdPayment}=  FindParamsEdit()
+  const{ editPayment}=  FindParamsEdit()
   const {register, handleSubmit , formState: {errors}}= useForm<FormType>({
     resolver:zodResolver(formSchema),
     defaultValues:{
-      id:`${findIdPayment?.id}`,
-      status:findIdPayment?.status,
-      product:findIdPayment?.product,
-      amout:findIdPayment?.amout
+      id:`${editPayment?.id}`,
+      status:editPayment?.status,
+      product:editPayment?.product,
+      amout:editPayment?.amout
   }
  
   })

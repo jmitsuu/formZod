@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import { FormPayment } from "../components/form/FormPayment";
 
 export function EditPayment() {
- const { findIdPayment, updatePayment } = FindParamsEdit();
-
+ const { editPayment,  updatePayment } = FindParamsEdit();
  return (
   <section className="w-full h-full flex flex-col items-center  ">
    <div className="container mx-auto mt-20 px-10">
     <h1 className="text-6xl pb-20 text-slate-700 uppercase underline">
      Editar Pagamento{" "}
     </h1>
-    <h1 className="text-xl mb-10">Id {findIdPayment?.id}</h1>
+    <h1 className="text-xl mb-10">Id {editPayment?.id}</h1>
     <FormPayment OnSubmit={updatePayment} btnTextForm="Atualizar pagamento" />
     <Button className="mt-5 ">
      {" "}
