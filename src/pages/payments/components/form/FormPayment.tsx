@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormTypeModel } from "../../payment.type";
 import { TypePayment } from "../../payment.interface";
+// import { GroupSelect } from "./checkbox/GroupSelect";
+import { checkList } from "./checkbox/group.model";
 interface TypeForm {
  OnSubmit: (data: TypePayment) => Promise<void>;
  fieldValueId?: string;
@@ -14,12 +16,16 @@ export function FormPayment({ OnSubmit, btnTextForm }: TypeForm) {
  const { register, handleSubmit, errors } = FormTypeModel();
  return (
   <form onSubmit={handleSubmit(OnSubmit)} className="space-y-8">
-   <Input
+   <select
     {...register("status")}
-    className="w-60"
-    placeholder="Status do pagamento"
-   />
-   {/* <GroupSelect teste={{...register("status")}}  /> */}
+    className="bg-white shadow-sm border text-sm   w-[190px] py-2 px-2 rounded-md"
+   >
+    {checkList.map((option) => {
+     return <option>{option.checkTitle}</option>;
+    })}
+   </select>
+   {/* <GroupSelect option={ {...register("status")}} /> */}
+
    <p className="text-red-500">{errors.status?.message}</p>
 
    <Input

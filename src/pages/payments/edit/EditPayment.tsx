@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FormPayment } from "../components/form/FormPayment";
 
 export function EditPayment() {
- const { editPayment,  updatePayment } = FindParamsEdit();
+ const { editPayment, updatePayment } = FindParamsEdit();
  return (
   <section className="w-full h-full flex flex-col items-center  ">
    <div className="container mx-auto mt-20 px-10">
@@ -13,10 +13,9 @@ export function EditPayment() {
     </h1>
     <h1 className="text-xl mb-10">Id {editPayment?.id}</h1>
     <FormPayment OnSubmit={updatePayment} btnTextForm="Atualizar pagamento" />
-    <Button className="mt-5 ">
-     {" "}
-     <Link to="/">Voltar</Link>
-    </Button>
+    <Link to="/">
+     <Button className="mt-5 ">Voltar</Button>
+    </Link>
    </div>
   </section>
  );

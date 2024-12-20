@@ -6,13 +6,13 @@ import {
  SelectValue,
 } from "@/components/ui/select";
 import { checkList } from "./group.model";
-export function GroupSelect() {
 
+export function GroupSelect() {
  return (
   <div>
-   <Select>
+   <Select  >
     <SelectTrigger className="w-[190px]">
-     <SelectValue placeholder="Selecione o pagamento" />
+     <SelectValue placeholder="Selecione o pagamento"  />
     </SelectTrigger>
     <SelectContent>
      {checkList.map((select) => {

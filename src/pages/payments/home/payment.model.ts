@@ -26,6 +26,7 @@ export function PaymentModel(){
   const {mutateAsync:formOnSubmit} = useMutation({
     mutationFn: postNewPayment,
     onSuccess(postNewPayment) {    
+    
           queryClient.setQueryData(['dataPayments'],
             (oldPayments: TypePayment[]) =>[
               ...oldPayments,
