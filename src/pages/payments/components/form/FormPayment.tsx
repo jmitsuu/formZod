@@ -21,7 +21,7 @@ export function FormPayment({ OnSubmit, btnTextForm }: TypeForm) {
     className="bg-white shadow-sm border text-sm   w-[190px] py-2 px-2 rounded-md"
    >
     {checkList.map((option) => {
-     return <option>{option.checkTitle}</option>;
+     return <option key={option.id}>{option.checkTitle}</option>;
     })}
    </select>
    {/* <GroupSelect option={ {...register("status")}} /> */}
