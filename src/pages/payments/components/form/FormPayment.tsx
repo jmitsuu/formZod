@@ -6,10 +6,10 @@ import { TypePayment } from "../../payment.interface";
 import { checkList } from "./checkbox/group.model";
 interface TypeForm {
  OnSubmit: (data: TypePayment) => Promise<void>;
- fieldValueId?: string;
- fieldValueProduct?: string;
- fieldValueAmout?: number;
- fieldValueStatus?: string;
+ fieldIdValue?: string;
+ fieldProductValue?: string;
+ fieldAmoutValue?: number;
+ fieldStatusValue?: string;
  btnTextForm: string;
 }
 export function FormPayment({ OnSubmit, btnTextForm }: TypeForm) {
