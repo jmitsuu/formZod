@@ -20,6 +20,7 @@ export function PaymentsProvider({ children }: TypePaymentsProvider) {
   </PaymentsContext.Provider>
  );
 }
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePayments = (): PaymentsContextType => {
  const context = useContext(PaymentsContext);
  if (!context) {
