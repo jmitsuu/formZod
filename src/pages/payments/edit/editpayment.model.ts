@@ -2,14 +2,15 @@ import axios from "axios";
 import { useParams } from "react-router-dom"
 import { TypePayment } from "../payment.interface";
 import { useToast } from "@/hooks/use-toast";
-import { PaymentServices } from "../payment.service";
+
 import { useMutation } from "@tanstack/react-query";
+import { useModelPayment } from "../home/payment.model";
 const url = "http://localhost:3000/payments"
 export function FindParamsEdit(){
   const {id} = useParams();
   const { toast } = useToast();
-  const {payments} = PaymentServices()
-  const editPayment = payments?.find((payment:TypePayment)=> payment.id === id)
+  const {data} = useModelPayment()
+  const editPayment = data.payments?.find((payment:TypePayment)=> payment.id === id)
 
   const updatePaymentById = async(data:TypePayment) =>{
    return await axios.put(`${url}/${id}`, data)

@@ -1,61 +1,59 @@
 
-import axios from "axios"
-import uniqid from 'uniqid';
+import {useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { cacheKey } from "@/cache/payments/cache-keys";
+import { createPaymentApi, deletePaymentById, getPayments } from "../payment.service";
+import { toast } from "sonner"
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema } from "../payment.schema";
 import { TypePayment } from "../payment.interface";
-import { usePayments } from "@/global/global.payments";
-import { toast } from "@/hooks/use-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { PaymentServices } from "../payment.service";
 
-const url = "http://localhost:3000/payments"
-
-export function PaymentModel(){
-  const {setFormModal} = usePayments();
-  const {refetch} = PaymentServices();
+export function useModelPayment(){
   const queryClient = useQueryClient()
-
-  const postNewPayment = async (data:TypePayment) =>{
-  const {data:newPostPayment} = await axios.post(url, {...data, id:uniqid()})
-    return newPostPayment
-}
-  const postDeletePayment = async(id:string) =>{
-    const {data:deletePayment} = await axios.delete(`${url}/${id}`)
-    return deletePayment
+  const [modalControl, setModalControl] = useState(false)
+  
+  function handleResponseMessage(message:string){
+    setModalControl(false)
+    toast.success(message)
+     queryClient.invalidateQueries({
+       queryKey:[cacheKey.payments.list]
+     })
+   }
+  const form = useForm<TypePayment>({
+    resolver:zodResolver(formSchema),
+    defaultValues:{
+      id:"",
+      product:"teste",
+      status:"Pago",
+      amount:0.00
   }
-
-  const {mutateAsync:formOnSubmit} = useMutation({
-    mutationFn: postNewPayment,
-    onSuccess(postNewPayment) {    
-    
-          queryClient.setQueryData(['dataPayments'],
-            (oldPayments: TypePayment[]) =>[
-              ...oldPayments,
-              postNewPayment
-            ]
-          )
-          toast({
-            variant:"success",
-            title:`Pagamento cadastrado`,
-            description: `Verifique sua lista logo abaixo.`,
-           
-          })
-          setFormModal(false)
-    },
+ 
   })
+  const{isPending, data:payments} = useQuery({
+      queryKey:[cacheKey.payments.list],
+      queryFn:getPayments
+  })
+
+  const {mutate:createPayment}= useMutation({
+    mutationKey:[cacheKey.payments.create],
+    mutationFn: createPaymentApi,
+    onSuccess(){handleResponseMessage("Pagamento criado com Sucesso")},
+  
+  })
+  const onSubmit: SubmitHandler<TypePayment> = (data) => {
+    createPayment(data);
+  };
   const {mutateAsync:deletePayment} = useMutation({
-    mutationFn: postDeletePayment,
-    onSuccess() {
-          refetch()
-          toast({
-            variant:"destructive",
-            title:`Pagamento Deletado`,
-            description: ``,
-           
-          })
-
-    },
+    mutationKey:[cacheKey.payments.delete],
+    mutationFn: deletePaymentById,
+    onSuccess(){handleResponseMessage("Pagamento deletado com Sucesso")}
   })
 
-  return {formOnSubmit, deletePayment}  
+  return {
+    data:{form,payments},
+    actions:{onSubmit, deletePayment, setModalControl},
+    state:{modalControl, isPending}
+  }  
 }
 

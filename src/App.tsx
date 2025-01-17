@@ -1,5 +1,4 @@
-import { Aside } from "./components/Aside/Aside";
-import { Toaster } from "./components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { PaymentsProvider } from "./global/global.payments";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -11,8 +10,7 @@ function App() {
    <div className="min-h-screen flex">
     <PaymentsProvider>
      <QueryClientProvider client={queryClient}>
-     <Aside />
-     <AppRoutes />
+      <AppRoutes />
      </QueryClientProvider>
     </PaymentsProvider>
     <Toaster />

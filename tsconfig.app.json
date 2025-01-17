@@ -28,5 +28,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/pages/payments/components/form/checkbox/.ts"]
+  "include": ["src", "src/pages/payments/components/checkbox/.ts"]
 }
